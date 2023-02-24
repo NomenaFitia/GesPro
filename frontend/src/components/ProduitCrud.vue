@@ -36,7 +36,7 @@
           <td>{{ produit.id }}</td>
           <td>{{ produit.nom }}</td>
           <td>{{ produit.prix }}</td>
-          <td>{{ produit.description }}</td>
+          <td>{{ produit.desc }}</td>
           <td>
             <button type="button" class="btn btn-warning" @click="edit(produit)">Edit</button>
             <button type="button" class="btn btn-danger"  @click="remove(produit)">Delete</button>
@@ -58,10 +58,10 @@ export default {
       result: {},
 
       produit: {
-        _id: '',
+        id: '',
         nom: '',
         prix: '',
-        description: ''
+        desc: ''
       }
     }
   },
@@ -70,6 +70,7 @@ export default {
   },
   mounted () {
     console.log('mounted() called.......')
+    this.produitreLoad()
   },
   methods: {
     produitreLoad () {
@@ -94,7 +95,7 @@ export default {
             this.produit.id = ''
             this.produit.nom = ''
             this.produit.prix = ''
-            this.produit.description = ''
+            this.produit.desc = ''
             this.produitreLoad()
           }
         )
@@ -110,7 +111,7 @@ export default {
             this.produit.id = ''
             this.produit.nom = ''
             this.produit.prix = ''
-            this.produit.description = ''
+            this.produit.desc = ''
             this.id = ''
             alert('mis a jour')
             this.produitreLoad()
@@ -118,7 +119,7 @@ export default {
         )
     },
     remove (produit) {
-      var url = `http://localhost:8080/deleteProduit/${produit.produitid}`
+      var url = `http://localhost:8080/deleteProduit/${produit.id}`
       axios.delete(url)
       alert('supprime')
       this.produitreLoad()
